@@ -19,6 +19,12 @@ namespace End_of_Creation
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Player player;
+        Player player2;
+
+        bool twoPlayer;
+        bool keyboard;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -66,12 +72,48 @@ namespace End_of_Creation
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState kb = Keyboard.GetState();
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || kb.IsKeyDown(Keys.Escape))
                 this.Exit();
 
             // TODO: Add your update logic here
-
+#if WINDOWS
+            if (keyboard)
+            {
+                if (kb.IsKeyDown(Keys.Up) || kb.IsKeyDown(Keys.W))
+                    player.xPos -= 5;
+                if (kb.IsKeyDown(Keys.Down) || kb.IsKeyDown(Keys.S))
+                    player.xPos += 5;
+                if (kb.IsKeyDown(Keys.Right) || kb.IsKeyDown(Keys.D))
+                    player.yPos += 5;
+                if (kb.IsKeyDown(Keys.Left) || kb.IsKeyDown(Keys.A))
+                    player.yPos -= 5;
+                if (twoPlayer)
+                {
+                    player.xPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X * 5;
+                    player.yPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y * 5;
+                }
+            }
+            else
+            {
+                player.xPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X * 5;
+                player.yPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y * 5;
+                if (twoPlayer)
+                {
+                    player2.xPos = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X * 5;
+                    player2.yPos = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.Y * 5;
+                }
+            }
+#elif XBOX
+            player.xPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X * 5;
+            player.yPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y * 5;
+            if(twoPlayer)
+            {
+                player2.xPos = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X * 5;
+                player2.yPos = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.Y * 5;
+            }
+#endif
             base.Update(gameTime);
         }
 
