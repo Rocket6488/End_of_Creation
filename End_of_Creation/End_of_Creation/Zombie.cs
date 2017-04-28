@@ -12,11 +12,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace End_of_Creation
 {
-    class Player
+    class Zombie
     {
-        public float xPos;
-        public float yPos;
         public int health;
         public int speed;
+        public Texture2D text;
+        public int damage;
+    }
+
+    public Zombie()
+    {
+        health
     }
 }
