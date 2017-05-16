@@ -1,0 +1,2 @@
+Content\Square.xnb
+Content\EOC_Sprites.xnb

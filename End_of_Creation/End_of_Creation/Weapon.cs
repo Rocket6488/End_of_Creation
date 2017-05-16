@@ -16,26 +16,25 @@ namespace End_of_Creation
     {
         public string type;
         public double fireRate;
-        public Texture2D text;
-        public Rectangle rect;
         public int shots;
         public double reloadTime;
-        public Weapon(string t, double fR, Texture2D te, Rectangle r, int s, double rT)
+        public int damage;
+        public Weapon(string t, double fR, int s, double rT, int dmg)
         {
             type = t;
             fireRate = fR;
-            text = te;
-            rect = r;
             shots = s;
             reloadTime = rT;
+            damage = dmg;
         }
 
-        public void reload()
+        public double reload()
         {
             if (shots == 0)
             {
-                //figure this out later...
+                return reloadTime;
             }
+            return 0.0;
         }
         public void upgrade()
         {

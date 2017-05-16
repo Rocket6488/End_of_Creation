@@ -12,22 +12,27 @@ using Microsoft.Xna.Framework.Media;
 
 namespace End_of_Creation
 {
-    class Player
+    class Bullet
     {
-        public int xPos;
-        public int yPos;
-        public int health;
-        public int speed;
         public int width;
         public int height;
-        public Rectangle bounds;
-        public Player()
+        public float xPos;
+        public float yPos;
+        public float vX;
+        public float vY;
+        public Bullet(int x, int y, float _vX, float _vY)
         {
-            health = 100;
-            speed = 6;
-            width = 16;
-            height = 13;
-            bounds = new Rectangle(xPos, yPos, width, height);
+            width = 2;
+            height = 2;
+            xPos = x;
+            yPos = y;
+            vX = _vX;
+            vY = _vY;
+        }
+        public void update()
+        {
+            xPos += vX*7;
+            yPos += vY*7;
         }
     }
 }

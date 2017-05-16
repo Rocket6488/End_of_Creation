@@ -14,3 +14,22 @@ H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_
 H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.exe
 H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.pdb
+H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\Square.xnb
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\Square.xnb
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\End_of_Creation.exe
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\End_of_Creation.pdb
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.dll
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.xml
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.csprojResolveAssemblyReference.cache
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.exe
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.pdb
+C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\EOC_Sprites.xnb
