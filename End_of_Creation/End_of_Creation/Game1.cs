@@ -25,9 +25,13 @@ namespace End_of_Creation
 
         Weapon weapon;
 
+        SpriteFont font;
+
         Texture2D sampleTex;
         Texture2D spritesheet;
 
+        List<Weapon> weapons;
+        List<Weapon> weapons2;
         List<Zombie> zombies = new List<Zombie>();
         List<Bullet> bullets;
 
@@ -35,6 +39,8 @@ namespace End_of_Creation
         bool keyboard;
 
         int count;
+        int w1;
+        int w2;
 
         public Game1()
         {
@@ -53,7 +59,16 @@ namespace End_of_Creation
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
             bullets = new List<Bullet>();
-            weapon = new Weapon("Pistol", 2.5, 20, 4.5, 20);
+            weapons = new List<Weapon>();
+            weapons2 = new List<Weapon>();
+            weapons.Add(new Weapon("Pistol", 50, 20, 4.5, 10));
+            weapons.Add(new Weapon("Rifle", 75, 20, 4.5, 15));
+            weapons.Add(new Weapon("Machine Pistol", 10, 20, 4.5, 5));
+            weapons.Add(new Weapon("Machine Gun", 5, 20, 4.5, 20));
+            weapons2.Add(new Weapon("Pistol", 50, 20, 4.5, 10));
+            weapons2.Add(new Weapon("Rifle", 75, 20, 4.5, 15));
+            weapons2.Add(new Weapon("Machine Pistol", 10, 20, 4.5, 5));
+            weapons2.Add(new Weapon("Machine Gun", 5, 20, 4.5, 20));
             keyboard = false;
             twoPlayer = false;
             player = new Player();
@@ -72,6 +87,7 @@ namespace End_of_Creation
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sampleTex = this.Content.Load<Texture2D>("Square");
             spritesheet = this.Content.Load<Texture2D>("EOC_Sprites");
+            font = this.Content.Load<SpriteFont>("SpriteFont1");
             // TODO: use this.Content to load your game content here
         }
 
@@ -96,7 +112,6 @@ namespace End_of_Creation
             // Allows the game to exiti
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || kb.IsKeyDown(Keys.Escape))
                 this.Exit();
-
             // TODO: Add your update logic here
             count++;
             if (keyboard)
@@ -162,23 +177,86 @@ namespace End_of_Creation
                 }
             if (twoPlayer)
                 {
-                    if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count%(int)weapon.fireRate == 0)
+                    if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count%weapons[w2].fireRate == 0)
                     {
-                            bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                    }
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
+                    {
+                        if (count % 60 == 0)
+                            weapons[w1].upgrade();
+                    }
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.RightShoulder == ButtonState.Pressed)
+                    {
+                        if (count % 15 == 0)
+                        {
+                            if (w1 < weapons.Count - 1)
+                                w1++;
+                        }
+                    }
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
+                    {
+                        if (count % 15 == 0)
+                        {
+                            if (w1 > 0)
+                                w1--;
+                        }
                     }
                 }
             }
             else
             {
-                if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count % (int)weapon.fireRate == 0)
+                if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count % weapons[w1].fireRate == 0)
                 {
-                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                    bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                }
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
+                {
+                    if (count % 60 == 0)
+                        weapons[w1].upgrade();
+                }
+                if (GamePad.GetState(PlayerIndex.One).Buttons.RightShoulder == ButtonState.Pressed)
+                {
+                    if (count % 15 == 0)
+                    {
+                        if (w1 < weapons.Count - 1)
+                            w1++;
+                    }
+                }
+                if (GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
+                {
+                    if (count % 15 == 0)
+                    {
+                        if (w1 > 0)
+                            w1--;
+                    }
                 }
                 if (twoPlayer)
                 {
-                    if (GamePad.GetState(PlayerIndex.Two).Triggers.Right > .5f && count %(int)weapon.fireRate == 0)
+                    if (GamePad.GetState(PlayerIndex.Two).Triggers.Right > .5f && count %weapons[w2].fireRate == 0)
                     {
-                            bullets.Add(new Bullet((player2.xPos + (player2.width / 2)), (player2.yPos + (player2.height / 2)), GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.Y));
+                        bullets.Add(new Bullet((player2.xPos + (player2.width / 2)), (player2.yPos + (player2.height / 2)), GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.Y));
+                    }
+                    if (GamePad.GetState(PlayerIndex.Two).Buttons.Start == ButtonState.Pressed)
+                    {
+                        if (count % 60 == 0)
+                            weapons2[w2].upgrade();
+                    }
+                    if (GamePad.GetState(PlayerIndex.Two).Buttons.RightShoulder == ButtonState.Pressed)
+                    {
+                        if (count % 15 == 0)
+                        {
+                            if (w2 < weapons2.Count - 1)
+                                w2++;
+                        }
+                    }
+                    if (GamePad.GetState(PlayerIndex.Two).Buttons.LeftShoulder == ButtonState.Pressed)
+                    {
+                        if (count % 15 == 0)
+                        {
+                            if (w2 > 0)
+                                w2--;
+                        }
                     }
                 }
             }
@@ -190,7 +268,7 @@ namespace End_of_Creation
                     {
                         if (new Rectangle((int)bullets[i].xPos, (int)bullets[i].yPos, bullets[i].width, bullets[i].height).Intersects(zombies[j].bounds))
                         {
-                            zombies[j].health -= weapon.damage;
+                            zombies[j].health -= weapons[w1].damage;
                             if (zombies[j].health < 1)
                             {
                                 zombies.RemoveAt(j);
@@ -276,7 +354,11 @@ namespace End_of_Creation
                     spriteBatch.Draw(sampleTex, new Rectangle((int)bullets[i].xPos, (int)bullets[i].yPos, bullets[i].width, bullets[i].height), Color.Orange);
                 }
             }
-            Console.WriteLine(player.health);
+            spriteBatch.DrawString(font, "Player1: " + weapons[w1].type, new Vector2(0, 0), Color.White);
+            if (twoPlayer)
+            {
+                spriteBatch.DrawString(font, "Player2: " + weapons2[w2].type, new Vector2(0, 20), Color.White);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

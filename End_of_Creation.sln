@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "End_of_Creation", "End_of_Creation\End_of_Creation\End_of_Creation.csproj", "{0F45F09F-DA18-4C53-A7B0-458F1920B2EF}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "End_of_CreationContent", "End_of_Creation\End_of_CreationContent\End_of_CreationContent.contentproj", "{72A50C9D-8703-48DC-9DE0-6D0E796F868D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "End_of_CreationContent", "End_of_Creation\End_of_CreationContent\End_of_CreationContent.contentproj", "{72A50C9D-8703-48DC-9DE0-6D0E796F868D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

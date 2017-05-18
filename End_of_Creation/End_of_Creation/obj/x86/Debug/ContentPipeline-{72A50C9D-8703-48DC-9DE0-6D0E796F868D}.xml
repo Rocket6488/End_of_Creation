@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\Square.xnb</Output>
+      <Output>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\Square.xnb</Output>
       <Time>2017-05-10T08:51:17.9946597-05:00</Time>
     </Item>
     <Item>
@@ -16,8 +16,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\EOC_Sprites.xnb</Output>
+      <Output>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\EOC_Sprites.xnb</Output>
       <Time>2017-05-16T08:53:04.4547077-05:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2017-05-18T10:03:32.764702-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -26,10 +35,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_CreationContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>H:\End_of_Creation\End_of_Creation\End_of_CreationContent\</RootDirectory>
+      <LoggerRootDirectory>H:\End_of_Creation\End_of_Creation\End_of_Creation\</LoggerRootDirectory>
+      <IntermediateDirectory>H:\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

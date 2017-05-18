@@ -15,32 +15,41 @@ namespace End_of_Creation
     class Weapon
     {
         public string type;
-        public double fireRate;
+        public int fireRate;
         public int shots;
+        public int maxShots;
         public double reloadTime;
         public int damage;
-        public Weapon(string t, double fR, int s, double rT, int dmg)
+        public int upgrades;
+        public Weapon(string t, int fR, int s, double rT, int dmg)
         {
             type = t;
             fireRate = fR;
-            shots = s;
+            maxShots = s;
             reloadTime = rT;
             damage = dmg;
+            shots = maxShots;
         }
 
         public double reload()
         {
             if (shots == 0)
             {
+                shots = maxShots;
                 return reloadTime;
             }
+            shots--;
             return 0.0;
         }
         public void upgrade()
         {
-            fireRate *= .2;
-            shots += 5;
-            reloadTime -= (reloadTime * .1);
+            if (upgrades < 3)
+            {
+                fireRate = (int)(fireRate * .8);
+                maxShots += 5;
+                reloadTime -= (reloadTime * .1);
+                upgrades++;
+            }
         }
     }
 }
