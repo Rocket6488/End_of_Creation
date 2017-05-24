@@ -19,30 +19,30 @@ namespace End_of_Creation
         public Texture2D text;
         public int damage;
         Random rand = new Random();
-        public int xPos;
-        public int yPos;
+        public float xPos;
+        public float yPos;
         public int width;
         public int height;
         public int target;
         public Rectangle bounds;
 
-        public Zombie(int swidth)
+        public Zombie(int swidth, int sheight)
         {
             health = 100 + (int)(rand.Next(0, 50));
             speed = (int)(rand.Next(1, 3));
             damage = (int)(rand.Next(5, 10));
             xPos = (int)(rand.NextDouble() * swidth);
-            yPos = (int)(rand.Next(20, 30));
+            yPos = (int)(rand.NextDouble() * sheight);
             setBody();
             setHead();
-            bounds = new Rectangle(xPos, yPos, width, height);
+            bounds = new Rectangle((int)xPos, (int)yPos, width, height);
             target = rand.Next(1, 3);
         }
 
         public void setBody()
         {
             int col = rand.Next(0, 8);
-            if(col<4)
+            if (col < 4)
             {
                 height = 10;
                 width = 16;
@@ -56,14 +56,26 @@ namespace End_of_Creation
 
         public void update(int pXPos, int pYPos)
         {
-            if (xPos > pXPos)
-                xPos -= speed;
-            if (xPos < pXPos)
-                xPos += speed;
-            if (yPos > pYPos)
-                yPos -= speed;
-            if (yPos < pYPos)
-                yPos += speed;
+            if (pXPos > xPos && pYPos > yPos)
+            {
+                xPos += (float)Math.Cos(Math.Atan(((yPos) - pYPos) / ((xPos) - pXPos)));
+                yPos += (float)Math.Sin(Math.Atan(((yPos) - pYPos) / ((xPos) - pXPos)));
+            }
+            if (pXPos <= xPos && pYPos > yPos)
+            {
+                xPos += (float)-Math.Cos(Math.Atan((pYPos - (yPos)) / ((xPos) - pXPos)));
+                yPos += (float)Math.Sin(Math.Atan((pYPos - (yPos)) / ((xPos) - pXPos)));
+            }
+            if (pXPos > xPos && pYPos <= yPos)
+            {
+                xPos += (float)Math.Cos(Math.Atan(((yPos) - pYPos) / (pXPos - (xPos))));
+                yPos += (float)-Math.Sin(Math.Atan(((yPos) - pYPos) / (pXPos - (xPos))));
+            }
+            if (pXPos <= xPos && pYPos <= yPos)
+            {
+                xPos += (float)-Math.Cos(Math.Atan((pYPos - (yPos)) / (pXPos - (xPos))));
+                yPos += (float)-Math.Sin(Math.Atan((pYPos - (yPos)) / (pXPos - (xPos))));
+            }
         }
 
         public void setHead()
