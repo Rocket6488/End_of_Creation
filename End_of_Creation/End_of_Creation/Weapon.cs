@@ -15,33 +15,41 @@ namespace End_of_Creation
     class Weapon
     {
         public string type;
-        public double fireRate;
-        public Texture2D text;
-        public Rectangle rect;
+        public int fireRate;
         public int shots;
+        public int maxShots;
         public double reloadTime;
-        public Weapon(string t, double fR, Texture2D te, Rectangle r, int s, double rT)
+        public int damage;
+        public int upgrades;
+        public Weapon(string t, int fR, int s, double rT, int dmg)
         {
             type = t;
             fireRate = fR;
-            text = te;
-            rect = r;
-            shots = s;
+            maxShots = s;
             reloadTime = rT;
+            damage = dmg;
+            shots = maxShots;
         }
 
-        public void reload()
+        public double reload()
         {
             if (shots == 0)
             {
-                //figure this out later...
+                shots = maxShots;
+                return reloadTime;
             }
+            shots--;
+            return 0.0;
         }
         public void upgrade()
         {
-            fireRate *= .2;
-            shots += 5;
-            reloadTime -= (reloadTime * .1);
+            if (upgrades < 3)
+            {
+                fireRate = (int)(fireRate * .8);
+                maxShots += 5;
+                reloadTime -= (reloadTime * .1);
+                upgrades++;
+            }
         }
     }
 }

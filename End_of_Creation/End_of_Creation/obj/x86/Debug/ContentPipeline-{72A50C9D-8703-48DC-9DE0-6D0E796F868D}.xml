@@ -1,6 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Square.bmp</Source>
+      <Name>Square</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\Square.xnb</Output>
+      <Time>2017-05-10T08:51:17.9946597-05:00</Time>
+    </Item>
+    <Item>
+      <Source>EOC_Sprites.png</Source>
+      <Name>EOC_Sprites</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\EOC_Sprites.xnb</Output>
+      <Time>2017-05-16T08:53:04.4547077-05:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2017-05-18T10:03:32.764702-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{72A50C9D-8703-48DC-9DE0-6D0E796F868D}</ContentProjectGUID>
@@ -8,12 +35,36 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_CreationContent\</RootDirectory>
-      <LoggerRootDirectory>H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\</LoggerRootDirectory>
-      <IntermediateDirectory>H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>H:\Documents\Visual Studio 2015\Projects\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>H:\End_of_Creation\End_of_Creation\End_of_CreationContent\</RootDirectory>
+      <LoggerRootDirectory>H:\End_of_Creation\End_of_Creation\End_of_Creation\</LoggerRootDirectory>
+      <IntermediateDirectory>H:\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-05:00</Value>
+      </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
         <Value>2016-11-03T17:01:35.0209022-05:00</Value>
