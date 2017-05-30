@@ -58,23 +58,23 @@ namespace End_of_Creation
         {
             if (pXPos > xPos && pYPos > yPos)
             {
-                xPos += (float)Math.Cos(Math.Atan(((yPos) - pYPos) / ((xPos) - pXPos)));
-                yPos += (float)Math.Sin(Math.Atan(((yPos) - pYPos) / ((xPos) - pXPos)));
+                xPos += (float)Math.Cos(Math.Atan(((yPos) - pYPos) / ((xPos) - pXPos)))*speed;
+                yPos += (float)Math.Sin(Math.Atan(((yPos) - pYPos) / ((xPos) - pXPos)))*speed;
             }
             if (pXPos <= xPos && pYPos > yPos)
             {
-                xPos += (float)-Math.Cos(Math.Atan((pYPos - (yPos)) / ((xPos) - pXPos)));
-                yPos += (float)Math.Sin(Math.Atan((pYPos - (yPos)) / ((xPos) - pXPos)));
+                xPos += (float)-Math.Cos(Math.Atan((pYPos - (yPos)) / ((xPos) - pXPos)))*speed;
+                yPos += (float)Math.Sin(Math.Atan((pYPos - (yPos)) / ((xPos) - pXPos)))*speed;
             }
             if (pXPos > xPos && pYPos <= yPos)
             {
-                xPos += (float)Math.Cos(Math.Atan(((yPos) - pYPos) / (pXPos - (xPos))));
-                yPos += (float)-Math.Sin(Math.Atan(((yPos) - pYPos) / (pXPos - (xPos))));
+                xPos += (float)Math.Cos(Math.Atan(((yPos) - pYPos) / (pXPos - (xPos))))*speed;
+                yPos += (float)-Math.Sin(Math.Atan(((yPos) - pYPos) / (pXPos - (xPos))))*speed;
             }
             if (pXPos <= xPos && pYPos <= yPos)
             {
-                xPos += (float)-Math.Cos(Math.Atan((pYPos - (yPos)) / (pXPos - (xPos))));
-                yPos += (float)-Math.Sin(Math.Atan((pYPos - (yPos)) / (pXPos - (xPos))));
+                xPos += (float)-Math.Cos(Math.Atan((pYPos - (yPos)) / (pXPos - (xPos))))*speed;
+                yPos += (float)-Math.Sin(Math.Atan((pYPos - (yPos)) / (pXPos - (xPos))))*speed;
             }
         }
 

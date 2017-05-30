@@ -22,8 +22,8 @@ namespace End_of_Creation
         public float vY;
         public Bullet(int x, int y, float _vX, float _vY)
         {
-            width = 2;
-            height = 2;
+            width = 4;
+            height = 4;
             xPos = x;
             yPos = y;
             vX = _vX;
@@ -31,8 +31,8 @@ namespace End_of_Creation
         }
         public void update()
         {
-            xPos += vX*7;
-            yPos += vY*7;
+            xPos += vX*14;
+            yPos += vY*14;
         }
     }
 }

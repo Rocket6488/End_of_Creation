@@ -54,6 +54,8 @@ namespace End_of_Creation
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 960;
+            graphics.PreferredBackBufferWidth = 1600;
             Content.RootDirectory = "Content";
         }
 
@@ -186,8 +188,8 @@ namespace End_of_Creation
                         player2.yPos = GraphicsDevice.Viewport.Height - player2.height;
                     }
                 }
-                player.bounds = new Rectangle(player.xPos, player.yPos, player.width, player.height);
-                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width, player2.height);
+                player.bounds = new Rectangle(player.xPos, player.yPos, player.width*2, player.height*2);
+                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width*2, player2.height*2);
             }
             else
             {
@@ -201,13 +203,13 @@ namespace End_of_Creation
                 {
                     player.yPos = 0;
                 }
-                if (player.xPos > GraphicsDevice.Viewport.Width-player.width)
+                if (player.xPos > GraphicsDevice.Viewport.Width-(player.width*2))
                 {
-                    player.xPos = GraphicsDevice.Viewport.Width - player.width;
+                    player.xPos = GraphicsDevice.Viewport.Width - (player.width*2);
                 }
-                if (player.yPos > GraphicsDevice.Viewport.Height-player.height)
+                if (player.yPos > GraphicsDevice.Viewport.Height-(player.height*2))
                 {
-                    player.yPos = GraphicsDevice.Viewport.Height - player.height;
+                    player.yPos = GraphicsDevice.Viewport.Height - (player.height*2);
                 }
                 if (twoPlayer)
                 {
@@ -221,20 +223,23 @@ namespace End_of_Creation
                     {
                         player2.yPos = 0;
                     }
-                    if (player2.xPos > GraphicsDevice.Viewport.Width-player2.width)
+                    if (player2.xPos > GraphicsDevice.Viewport.Width-(player2.width*2))
                     {
-                        player2.xPos = GraphicsDevice.Viewport.Width - player2.width;
+                        player2.xPos = GraphicsDevice.Viewport.Width - (player2.width * 2);
                     }
-                    if (player2.yPos > GraphicsDevice.Viewport.Height-player2.height)
+                    if (player2.yPos > GraphicsDevice.Viewport.Height- (player2.width * 2))
                     {
-                        player2.yPos = GraphicsDevice.Viewport.Height - player2.height;
+                        player2.yPos = GraphicsDevice.Viewport.Height - (player2.width * 2);
                     }
                 }
-                player.bounds = new Rectangle(player.xPos, player.yPos, player.width, player.height);
-                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width, player2.height);
+                player.bounds = new Rectangle(player.xPos, player.yPos, player.width*2, player.height*2);
+                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width*2, player2.height*2);
             }
-            if(count%rate == 0)
+            if (count % rate == 0)
+            {
                 zombies.Add(new Zombie(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+                ups++;
+            }
             if (keyboard)
             {
                 if (mouse.LeftButton == ButtonState.Pressed && count % weapons[w1].fireRate == 0)
@@ -458,16 +463,16 @@ namespace End_of_Creation
                             zombies[k].update(player2.xPos, player2.yPos);
                     }
                 }
-                    zombies[k].bounds = new Rectangle((int)zombies[k].xPos, (int)zombies[k].yPos, zombies[k].width, zombies[k].height);
+                    zombies[k].bounds = new Rectangle((int)zombies[k].xPos, (int)zombies[k].yPos, zombies[k].width*2, zombies[k].height*2);
             }
-            if (ups == 100)
-                rate -= 3;
-            if (ups == 150)
-                rate -= 3;
-            if (ups == 200)
-                rate -= 3;
-            if (ups == 250)
-                rate -= 3;
+            if (ups == 25 && rate == 60)
+                rate -= 12;
+            if (ups == 50 && rate == 48)
+                rate -= 12;
+            if (ups == 75 && rate == 36)
+                rate -= 12;
+            if (ups == 100 && rate == 24)
+                rate -= 12;
             if (twoPlayer)
             {
                 if (player2.health < 1)
@@ -477,6 +482,7 @@ namespace End_of_Creation
             }
             if (player.health < 1)
             {
+                Console.WriteLine(gameTime.TotalGameTime.TotalMinutes);
                 this.Exit();
             }
             if (load > 0)
@@ -510,11 +516,11 @@ namespace End_of_Creation
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(spritesheet, player.bounds, new Rectangle(0, 0, player.width, player.height), Color.White);
-            spriteBatch.Draw(sampleTex, new Rectangle(0, GraphicsDevice.Viewport.Height-10, 1*player.health, 3), Color.Green);
+            spriteBatch.Draw(sampleTex, new Rectangle(0, GraphicsDevice.Viewport.Height-40, 5*player.health, 15), Color.Gray);
             if (twoPlayer)
             {
                 spriteBatch.Draw(spritesheet, player2.bounds, new Rectangle(0, 14, player2.width, player2.height), Color.White);
-                spriteBatch.Draw(sampleTex, new Rectangle(0, GraphicsDevice.Viewport.Height - 20, 1* player2.health, 3), Color.Green);
+                spriteBatch.Draw(sampleTex, new Rectangle(0, GraphicsDevice.Viewport.Height - 20, 5* player2.health, 15), Color.Red);
             }
             for (int i = 0; i < zombies.Count; i++)
             {
