@@ -38,13 +38,24 @@ namespace End_of_Creation
         bool twoPlayer;
         bool keyboard;
 
+        int mouseX;
+        int mouseY;
         int count;
         int w1;
         int w2;
+        int rate;
+        int ups;
+        int load;
+        int load2;
+
+        double xSpd;
+        double ySpd;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 960;
+            graphics.PreferredBackBufferWidth = 1600;
             Content.RootDirectory = "Content";
         }
 
@@ -61,19 +72,23 @@ namespace End_of_Creation
             bullets = new List<Bullet>();
             weapons = new List<Weapon>();
             weapons2 = new List<Weapon>();
-            weapons.Add(new Weapon("Pistol", 50, 20, 4.5, 10));
-            weapons.Add(new Weapon("Rifle", 75, 20, 4.5, 15));
-            weapons.Add(new Weapon("Machine Pistol", 10, 20, 4.5, 5));
-            weapons.Add(new Weapon("Machine Gun", 5, 20, 4.5, 20));
-            weapons2.Add(new Weapon("Pistol", 50, 20, 4.5, 10));
-            weapons2.Add(new Weapon("Rifle", 75, 20, 4.5, 15));
-            weapons2.Add(new Weapon("Machine Pistol", 10, 20, 4.5, 5));
-            weapons2.Add(new Weapon("Machine Gun", 5, 20, 4.5, 20));
+            weapons.Add(new Weapon("Pistol", 50, 20, (int)(60*4.5), 10));
+            weapons.Add(new Weapon("Rifle", 75, 10, 60*7, 25));
+            weapons.Add(new Weapon("Machine Pistol", 10, 50, (int)(60*.5), 7));
+            weapons.Add(new Weapon("Machine Gun", 5, 200, (int)(60*1.75), 5));
+            weapons2.Add(new Weapon("Pistol", 50, 20, (int)(60*4.5), 10));
+            weapons2.Add(new Weapon("Rifle", 75, 10, 60*7, 25));
+            weapons2.Add(new Weapon("Machine Pistol", 10, 50, (int)(60*.75), 7));
+            weapons2.Add(new Weapon("Machine Gun", 5, 200, (int)(60*2.75), 5));
             keyboard = false;
             twoPlayer = false;
             player = new Player();
             player2 = new Player();
             count = 0;
+            rate = 60;
+            ups = 0;
+            load = 0;
+            load2 = 0;
             base.Initialize();
         }
 
@@ -114,6 +129,18 @@ namespace End_of_Creation
                 this.Exit();
             // TODO: Add your update logic here
             count++;
+            if (GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed)
+            {
+                twoPlayer = true;
+            }
+            if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
+            {
+                keyboard = true;
+            }
+            if (kb.IsKeyDown(Keys.X))
+            {
+                keyboard = false;
+            }
             if (keyboard)
             {
                 if (kb.IsKeyDown(Keys.Up) || kb.IsKeyDown(Keys.W))
@@ -124,62 +151,149 @@ namespace End_of_Creation
                     player.xPos += player.speed;
                 if (kb.IsKeyDown(Keys.Left) || kb.IsKeyDown(Keys.A))
                     player.xPos -= player.speed;
+                if (player.xPos < 0)
+                {
+                    player.xPos = 0;
+                }
+                if (player.yPos < 0)
+                {
+                    player.yPos = 0;
+                }
+                if (player.xPos > GraphicsDevice.Viewport.Width-player.width)
+                {
+                    player.xPos = GraphicsDevice.Viewport.Width - player.width;
+                }
+                if (player.yPos > GraphicsDevice.Viewport.Height-player.height)
+                {
+                    player.yPos = GraphicsDevice.Viewport.Height - player.height;
+                }
                 if (twoPlayer)
                 {
                     player2.xPos += (int)(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X * player2.speed);
                     player2.yPos -= (int)(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y * player2.speed);
+                    if (player2.xPos < 0)
+                    {
+                        player2.xPos = 0;
+                    }
+                    if (player2.yPos < 0)
+                    {
+                        player2.yPos = 0;
+                    }
+                    if (player2.xPos > GraphicsDevice.Viewport.Width-player2.width)
+                    {
+                        player2.xPos = GraphicsDevice.Viewport.Width - player2.width;
+                    }
+                    if (player2.yPos > GraphicsDevice.Viewport.Height-player2.height)
+                    {
+                        player2.yPos = GraphicsDevice.Viewport.Height - player2.height;
+                    }
                 }
-                player.bounds = new Rectangle(player.xPos, player.yPos, player.width, player.height);
-                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width, player2.height);
+                player.bounds = new Rectangle(player.xPos, player.yPos, player.width*2, player.height*2);
+                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width*2, player2.height*2);
             }
             else
             {
                 player.xPos += (int)(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X * player.speed);
                 player.yPos -= (int)(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y * player.speed);
+                if (player.xPos < 0)
+                {
+                    player.xPos = 0;
+                }
+                if (player.yPos < 0)
+                {
+                    player.yPos = 0;
+                }
+                if (player.xPos > GraphicsDevice.Viewport.Width-(player.width*2))
+                {
+                    player.xPos = GraphicsDevice.Viewport.Width - (player.width*2);
+                }
+                if (player.yPos > GraphicsDevice.Viewport.Height-(player.height*2))
+                {
+                    player.yPos = GraphicsDevice.Viewport.Height - (player.height*2);
+                }
                 if (twoPlayer)
                 {
                     player2.xPos += (int)(GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X * player2.speed);
                     player2.yPos -= (int)(GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.Y * player2.speed);
+                    if (player2.xPos < 0)
+                    {
+                        player2.xPos = 0;
+                    }
+                    if (player2.yPos < 0)
+                    {
+                        player2.yPos = 0;
+                    }
+                    if (player2.xPos > GraphicsDevice.Viewport.Width-(player2.width*2))
+                    {
+                        player2.xPos = GraphicsDevice.Viewport.Width - (player2.width * 2);
+                    }
+                    if (player2.yPos > GraphicsDevice.Viewport.Height- (player2.width * 2))
+                    {
+                        player2.yPos = GraphicsDevice.Viewport.Height - (player2.width * 2);
+                    }
                 }
-                player.bounds = new Rectangle(player.xPos, player.yPos, player.width, player.height);
-                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width, player2.height);
+                player.bounds = new Rectangle(player.xPos, player.yPos, player.width*2, player.height*2);
+                player2.bounds = new Rectangle(player2.xPos, player2.yPos, player2.width*2, player2.height*2);
             }
-            if(count%60 == 0)
-                zombies.Add(new Zombie(GraphicsDevice.Viewport.Width));
+            if (count % rate == 0)
+            {
+                zombies.Add(new Zombie(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+                ups++;
+            }
             if (keyboard)
             {
-                if (mouse.LeftButton == ButtonState.Pressed)
+                if (mouse.LeftButton == ButtonState.Pressed && count % weapons[w1].fireRate == 0)
                 {
-                    if (mouse.X <= (player.xPos) && mouse.Y <= (player.yPos))
+                    if (load == 0)
                     {
-                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)),
-                            (float)-Math.Cos(Math.Atan((player.yPos) - mouse.Y / ((player.xPos) - mouse.X))),
-                            (float)-Math.Sin(Math.Atan((player.yPos) - mouse.Y / ((player.xPos) - mouse.X)))));
-                    }
-                    else if (mouse.X <= (player.xPos) && mouse.Y > (player.yPos))
-                    {
-                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)),
-                            (float)-Math.Cos(Math.Atan((player.yPos) - mouse.Y / ((player.xPos) - mouse.X))),
-                            (float)Math.Sin(Math.Atan((player.yPos) - mouse.Y / ((player.xPos) - mouse.X)))));
-                    }
-                    else if (mouse.X > (player.xPos) && mouse.Y <= (player.yPos))
-                    {
-                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)),
-                               (float)Math.Cos(Math.Atan((player.yPos) - mouse.Y / ((player.xPos) - mouse.X))),
-                               (float)-Math.Sin(Math.Atan((player.yPos - 8) - mouse.Y / ((player.xPos) - mouse.X)))));
-                    }
-                    else if (mouse.X > (player.xPos) && mouse.Y > (player.yPos))
-                    {
-                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)),
-                            (float)Math.Cos(Math.Atan((player.yPos) - mouse.Y / ((player.xPos) - mouse.X))),
-                            (float)Math.Sin(Math.Atan((player.yPos - 8) - mouse.Y / ((player.xPos) - mouse.X)))));
+                        load = weapons[w1].reload();
+                        if (mouse.X <= (player.xPos) && mouse.Y <= (player.yPos))
+                        {
+                            mouseX = ((player.xPos) - mouse.X);
+                            mouseY = ((player.yPos) - mouse.Y);
+                            xSpd = -Math.Cos(Math.Atan(mouseY / mouseX));
+                            ySpd = -Math.Sin(Math.Atan(mouseY / mouseX));
+                            bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), (float)xSpd, (float)ySpd));
+                        }
+                        else if (mouse.X <= (player.xPos) && mouse.Y > (player.yPos))
+                        {
+                            mouseX = ((player.xPos) - mouse.X);
+                            mouseY = (mouse.Y - (player.yPos));
+                            xSpd = -Math.Cos(Math.Atan(mouseY / mouseX));
+                            ySpd = Math.Sin(Math.Atan(mouseY / mouseX));
+                            bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), (float)xSpd, (float)ySpd));
+                        }
+                        else if (mouse.X > (player.xPos) && mouse.Y <= (player.yPos))
+                        {
+                            mouseX = (mouse.X - (player.xPos));
+                            mouseY = ((player.yPos) - mouse.Y);
+                            xSpd = Math.Cos(Math.Atan(mouseY / mouseX));
+                            ySpd = -Math.Sin(Math.Atan(mouseY / mouseX));
+                            bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), (float)xSpd, (float)ySpd));
+                        }
+                        else if (mouse.X > (player.xPos) && mouse.Y > (player.yPos))
+                        {
+                            mouseX = (mouse.X - (player.xPos - 8));
+                            mouseY = (mouse.Y - (player.yPos - 8));
+                            xSpd = Math.Cos(Math.Atan(mouseY / mouseX));
+                            ySpd = Math.Sin(Math.Atan(mouseY / mouseX));
+                            bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), (float)xSpd, (float)ySpd));
+                        }
                     }
                 }
-            if (twoPlayer)
+                else
                 {
-                    if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count%weapons[w2].fireRate == 0)
+                    load--;
+                }
+                if (twoPlayer)
+                {
+                    if (load2 == 0)
                     {
-                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                        if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count % weapons[w2].fireRate == 0)
+                        {
+                            load2 = weapons2[w2].reload();
+                            bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                        }
                     }
                     if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
                     {
@@ -206,9 +320,13 @@ namespace End_of_Creation
             }
             else
             {
-                if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count % weapons[w1].fireRate == 0)
+                if (load == 0)
                 {
-                    bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                    if (GamePad.GetState(PlayerIndex.One).Triggers.Right > .5f && count % weapons[w1].fireRate == 0)
+                    {
+                        load = weapons[w1].reload();
+                        bullets.Add(new Bullet((player.xPos + (player.width / 2)), (player.yPos + (player.height / 2)), GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y));
+                    }
                 }
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
                 {
@@ -220,7 +338,10 @@ namespace End_of_Creation
                     if (count % 15 == 0)
                     {
                         if (w1 < weapons.Count - 1)
+                        {
                             w1++;
+                            load = 0;
+                        }
                     }
                 }
                 if (GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
@@ -228,14 +349,25 @@ namespace End_of_Creation
                     if (count % 15 == 0)
                     {
                         if (w1 > 0)
+                        {
                             w1--;
+                            load = 0;
+                        }
                     }
                 }
                 if (twoPlayer)
                 {
-                    if (GamePad.GetState(PlayerIndex.Two).Triggers.Right > .5f && count %weapons[w2].fireRate == 0)
+                    if (load2 == 0)
                     {
-                        bullets.Add(new Bullet((player2.xPos + (player2.width / 2)), (player2.yPos + (player2.height / 2)), GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.Y));
+                        if (GamePad.GetState(PlayerIndex.Two).Triggers.Right > .5f && count % weapons[w2].fireRate == 0)
+                        {
+                            load2 = weapons2[w2].reload();
+                            bullets.Add(new Bullet((player2.xPos + (player2.width / 2)), (player2.yPos + (player2.height / 2)), GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.X, -GamePad.GetState(PlayerIndex.Two).ThumbSticks.Right.Y));
+                        }
+                    }
+                    else
+                    {
+                        load2--;
                     }
                     if (GamePad.GetState(PlayerIndex.Two).Buttons.Start == ButtonState.Pressed)
                     {
@@ -247,7 +379,10 @@ namespace End_of_Creation
                         if (count % 15 == 0)
                         {
                             if (w2 < weapons2.Count - 1)
+                            {
                                 w2++;
+                                load2 = 0;
+                            }
                         }
                     }
                     if (GamePad.GetState(PlayerIndex.Two).Buttons.LeftShoulder == ButtonState.Pressed)
@@ -255,7 +390,10 @@ namespace End_of_Creation
                         if (count % 15 == 0)
                         {
                             if (w2 > 0)
+                            {
                                 w2--;
+                                load2 = 0;
+                            }
                         }
                     }
                 }
@@ -303,20 +441,57 @@ namespace End_of_Creation
             {
                 if (!twoPlayer)
                 {
-                    zombies[k].update(player.xPos, player.yPos);
+                    if (zombies[k].bounds.Intersects(player.bounds) && count % 10 == 0)
+                        player.health -= zombies[k].damage;
+                    else
+                        zombies[k].update(player.xPos, player.yPos);
                 }
                 else
                 {
                     if (zombies[k].target == 1)
                     {
-                        zombies[k].update(player.xPos, player.yPos);
+                        if (zombies[k].bounds.Intersects(player.bounds) && count % 10 == 0)
+                            player.health -= zombies[k].damage;
+                        else
+                            zombies[k].update(player.xPos, player.yPos);
                     }
                     else if (zombies[k].target == 2)
                     {
-                        zombies[k].update(player2.xPos, player2.yPos);
+                        if (zombies[k].bounds.Intersects(player2.bounds) && count % 10 == 0)
+                            player2.health -= zombies[k].damage;
+                        else
+                            zombies[k].update(player2.xPos, player2.yPos);
                     }
                 }
-                    zombies[k].bounds = new Rectangle(zombies[k].xPos, zombies[k].yPos, zombies[k].width, zombies[k].height);
+                    zombies[k].bounds = new Rectangle((int)zombies[k].xPos, (int)zombies[k].yPos, zombies[k].width*2, zombies[k].height*2);
+            }
+            if (ups == 25 && rate == 60)
+                rate -= 12;
+            if (ups == 50 && rate == 48)
+                rate -= 12;
+            if (ups == 75 && rate == 36)
+                rate -= 12;
+            if (ups == 100 && rate == 24)
+                rate -= 12;
+            if (twoPlayer)
+            {
+                if (player2.health < 1)
+                {
+                    twoPlayer = false;
+                }
+            }
+            if (player.health < 1)
+            {
+                Console.WriteLine(gameTime.TotalGameTime.TotalMinutes);
+                this.Exit();
+            }
+            if (load > 0)
+            {
+                load--;
+            }
+            if (load2 > 0)
+            {
+                load2--;
             }
 #if XBOX
             player.xPos = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X * player.speed;
@@ -341,8 +516,12 @@ namespace End_of_Creation
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(spritesheet, player.bounds, new Rectangle(0, 0, player.width, player.height), Color.White);
+            spriteBatch.Draw(sampleTex, new Rectangle(0, GraphicsDevice.Viewport.Height-40, 5*player.health, 15), Color.Gray);
             if (twoPlayer)
+            {
                 spriteBatch.Draw(spritesheet, player2.bounds, new Rectangle(0, 14, player2.width, player2.height), Color.White);
+                spriteBatch.Draw(sampleTex, new Rectangle(0, GraphicsDevice.Viewport.Height - 20, 5* player2.health, 15), Color.Red);
+            }
             for (int i = 0; i < zombies.Count; i++)
             {
                 spriteBatch.Draw(sampleTex, zombies[i].bounds, Color.Green);
@@ -351,7 +530,7 @@ namespace End_of_Creation
             {
                 for (int i = 0; i < bullets.Count; i++)
                 {
-                    spriteBatch.Draw(sampleTex, new Rectangle((int)bullets[i].xPos, (int)bullets[i].yPos, bullets[i].width, bullets[i].height), Color.Orange);
+                    spriteBatch.Draw(sampleTex, new Rectangle((int)bullets[i].xPos, (int)bullets[i].yPos, bullets[i].width, bullets[i].height), Color.Yellow);
                 }
             }
             spriteBatch.DrawString(font, "Player1: " + weapons[w1].type, new Vector2(0, 0), Color.White);

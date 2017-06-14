@@ -35,6 +35,7 @@ C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\
 C:\Users\197997\Desktop\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\EOC_Sprites.xnb
 H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\Square.xnb
 H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\EOC_Sprites.xnb
+H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\SpriteFont1.xnb
 H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\End_of_Creation.exe
 H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\End_of_Creation.pdb
 H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Microsoft.Xna.Framework.dll
@@ -51,4 +52,3 @@ H:\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation
 H:\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 H:\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.exe
 H:\End_of_Creation\End_of_Creation\End_of_Creation\obj\x86\Debug\End_of_Creation.pdb
-H:\End_of_Creation\End_of_Creation\End_of_Creation\bin\x86\Debug\Content\SpriteFont1.xnb

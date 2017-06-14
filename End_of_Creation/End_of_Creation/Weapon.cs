@@ -18,10 +18,10 @@ namespace End_of_Creation
         public int fireRate;
         public int shots;
         public int maxShots;
-        public double reloadTime;
+        public int reloadTime;
         public int damage;
         public int upgrades;
-        public Weapon(string t, int fR, int s, double rT, int dmg)
+        public Weapon(string t, int fR, int s, int rT, int dmg)
         {
             type = t;
             fireRate = fR;
@@ -31,7 +31,7 @@ namespace End_of_Creation
             shots = maxShots;
         }
 
-        public double reload()
+        public int reload()
         {
             if (shots == 0)
             {
@@ -39,7 +39,7 @@ namespace End_of_Creation
                 return reloadTime;
             }
             shots--;
-            return 0.0;
+            return 0;
         }
         public void upgrade()
         {
@@ -47,7 +47,7 @@ namespace End_of_Creation
             {
                 fireRate = (int)(fireRate * .8);
                 maxShots += 5;
-                reloadTime -= (reloadTime * .1);
+                reloadTime -= (int)(reloadTime * .1);
                 upgrades++;
             }
         }
